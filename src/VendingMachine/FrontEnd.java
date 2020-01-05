@@ -188,12 +188,16 @@ public class FrontEnd {
 				}
 				// Calculating the change and totalCredits; setting the item to the itemDispense
 				int change = machine.getTotalCredits() - machine.getSellPrice();
-				machine.minusTotalCredits(machine.getSellPrice());
-				totalCredits.setText(Integer.toString(machine.getTotalCredits()));
-				String tempString = Integer.toString(change);
-				changeTextField.setText(tempString);
-				String item = machine.getItem();
-				itemDispenseTextField.setText(item);
+				if (change < 0) { 
+					JOptionPane.showMessageDialog(mainFrame, "Insufficient funds");
+				} else {
+					machine.minusTotalCredits(machine.getSellPrice());
+					totalCredits.setText(Integer.toString(machine.getTotalCredits()));
+					String tempString = Integer.toString(change);
+					changeTextField.setText(tempString);
+					String item = machine.getItem();
+					itemDispenseTextField.setText(item);
+				}
 
 			}
 		});
